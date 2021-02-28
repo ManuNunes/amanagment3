@@ -1,0 +1,2 @@
+Usuário vai precisar se autenticar para acessar o sistema.
+Usuário vai ter as coisas que foram adicionadas por ele
