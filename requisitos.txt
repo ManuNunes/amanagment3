@@ -1,3 +1,3 @@
 Usuário vai criar usuário e senha - OK!
-Usuário vai precisar se autenticar para acessar o sistema.
-Usuário vai ter as coisas que foram adicionadas por ele
+Usuário vai precisar se autenticar para acessar o sistema. - OK
+Usuário vai poder adicionar ocorrências
