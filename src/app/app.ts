@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import express from 'express'
-import routes from './../routes'
+import route from './../routes'
 import './../database'
 
 class App {
@@ -8,14 +8,13 @@ class App {
     constructor() {
         this.app = express()
         this.app.use(express.json())
-
+        this.midlewares()
         this.routes()
     }
     routes() {
-        this.app.use(routes)
+        this.app.use(route)
     }
-    database() {
-
+    midlewares() {
     }
 }
 

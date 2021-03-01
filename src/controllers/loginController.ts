@@ -1,6 +1,5 @@
-import bcrypt from 'bcrypt';
 import { Request, Response } from "express";
-import { getCustomRepository } from 'typeorm'
+import { getCustomRepository } from 'typeorm';
 import { UserRepository } from '../database/repository/userRepository';
 
 class LoginController {
@@ -10,6 +9,7 @@ class LoginController {
         const userRepository = getCustomRepository(UserRepository)
         const createUser = userRepository.create({ nome, user, pass: password })
         const userExists = await userRepository.findOne({ user })
+        console.log(userRepository.metadata.propertiesMap)
 
         if (userExists) {
             return res.status(400).json({ error: "Usuário já existe" });
@@ -18,8 +18,9 @@ class LoginController {
 
         return res.status(200).json({ message: "Usuário foi criado com sucesso", createUser })
     }
-    async execute() {
-
+    async update(req: Request, res: Response) {
+        console.log(req.id)
+        return res.json({ ok: true })
     }
 }
 

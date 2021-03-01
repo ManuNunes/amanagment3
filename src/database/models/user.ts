@@ -1,7 +1,5 @@
+import bcrypt from 'bcrypt';
 import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-import bcrypt from 'bcrypt'
-import { createHook } from "async_hooks";
-import { createHash } from "crypto";
 
 @Entity("Users")
 export default class User {
