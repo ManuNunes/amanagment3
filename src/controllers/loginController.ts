@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from 'typeorm';
 import { UserRepository } from '../database/repository/userRepository';
+import User from './../database/models/user'
 
 class LoginController {
     async create(req: Request, res: Response) {
@@ -19,8 +20,16 @@ class LoginController {
         return res.status(200).json({ message: "Usuário foi criado com sucesso", createUser })
     }
     async update(req: Request, res: Response) {
-        console.log(req.id)
-        return res.json({ ok: true })
+        const { new_user } = req.body
+        const userRepository = getCustomRepository(UserRepository)
+        const user_id = req.id
+
+        const user = await userRepository.find({ id: user_id })
+
+        const dados = await Object.values(user)
+
+        console.log(dados)
+
     }
 }
 
