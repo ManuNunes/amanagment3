@@ -3,7 +3,7 @@ import { getCustomRepository } from "typeorm";
 import { UserRepository } from "../database/repository/userRepository";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import authConfig from './authConfig'
+import authConfig from '../config/authConfig'
 
 
 class SessionController {

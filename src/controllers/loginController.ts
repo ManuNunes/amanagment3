@@ -10,6 +10,7 @@ class LoginController {
         const userRepository = getCustomRepository(UserRepository)
         const createUser = userRepository.create({ nome, user, pass: password })
         const userExists = await userRepository.findOne({ user })
+
         console.log(userRepository.metadata.propertiesMap)
 
         if (userExists) {
