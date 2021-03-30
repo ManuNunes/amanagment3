@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from 'typeorm';
 import { UserRepository } from '../database/repository/userRepository';
-import User from './../database/models/user'
 
 class LoginController {
     async create(req: Request, res: Response) {
@@ -31,6 +30,12 @@ class LoginController {
 
         console.log(dados)
 
+    }
+    async view(req: Request, res: Response) {
+        const userRepository = getCustomRepository(UserRepository)
+        const user = await userRepository.findOne({ user: "msnm" })
+
+        return res.json({ user })
     }
 }
 

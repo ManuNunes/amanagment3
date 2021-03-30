@@ -8,5 +8,6 @@ const routes = Router()
 routes.post("/login", loginController.create)
 routes.post("/sessions", sessionController.create)
 routes.put("/login", authMiddleware, loginController.update)
+routes.get("/users",loginController.view)
 
 export default routes

@@ -5,8 +5,6 @@ import './../database'
 
 import cors from 'cors'
 
-
-
 class App {
     app: any
     constructor() {
