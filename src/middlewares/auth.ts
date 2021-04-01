@@ -1,19 +1,18 @@
+import 'dotenv'
 import { Request, Response } from "express";
-import { promisify } from "util";
-import authConfig from '../config/authConfig'
 import jwt from 'jsonwebtoken'
 
 
-export default async (req: Request, res: Response, next) => {
+export default async (req: Request, res: Response, next: any) => {
     const authHeader = req.headers.authorization
 
-    const [, token] = authHeader.split(" ")
-
-    if (!token) {
+    if (!authHeader) {
         return res.status(401).json({ error: "Você não tem permissões" })
     }
+    const [, token] = authHeader.split(" ")
+
     try {
-        const decoded = await promisify(jwt.verify)(token, authConfig.secret)
+        const decoded = await jwt.verify(token, process.env.TOKEN_SECRET)
         req.id = decoded.id_user
 
     } catch (err) {

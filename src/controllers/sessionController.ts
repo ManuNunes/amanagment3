@@ -1,15 +1,14 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { UserRepository } from "../database/repository/userRepository";
+import { UsersRepository } from "../database/repository/userRepository";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import authConfig from '../config/authConfig'
 
 
 class SessionController {
     async create(req: Request, res: Response) {
         const { user, password } = req.body
-        const userRepository = getCustomRepository(UserRepository)
+        const userRepository = getCustomRepository(UsersRepository)
         const checkUser = await userRepository.findOne({ user })
 
         if (!checkUser) {
@@ -22,18 +21,14 @@ class SessionController {
         }
         const id_user = checkUser.id
 
-        const secret = bcrypt.hashSync(id_user, 4)
-
-        Object.assign(authConfig, {
-            secret: secret
-        })
+        const secret = bcrypt.hashSync(id_user, 6)
 
         return res.json({
             user: {
                 user,
                 password
             },
-            token: jwt.sign({ id_user }, secret, {
+            token: jwt.sign({ id_user }, process.env.TOKEN_SECRET, {
                 expiresIn: '7d'
             }),
         })
