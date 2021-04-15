@@ -7,9 +7,9 @@ import jwt from 'jsonwebtoken'
 
 class SessionController {
     async create(req: Request, res: Response) {
-        const { user, password } = req.body
+        const { email, password } = req.body
         const userRepository = getCustomRepository(UsersRepository)
-        const checkUser = await userRepository.findOne({ user })
+        const checkUser = await userRepository.findOne({ email })
 
         if (!checkUser) {
             return res.status(401).json({ error: "Usuário não existe" })
@@ -25,7 +25,7 @@ class SessionController {
 
         return res.json({
             user: {
-                user,
+                email,
                 password
             },
             token: jwt.sign({ id_user }, process.env.TOKEN_SECRET, {

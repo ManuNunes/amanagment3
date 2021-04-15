@@ -6,9 +6,9 @@ export default class User {
     @PrimaryGeneratedColumn("uuid")
     readonly id: string
     @Column()
-    nome: string
+    username: string
     @Column()
-    user: string
+    email: string
     @Column()
     pass: string
     @CreateDateColumn()
