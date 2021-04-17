@@ -1,14 +1,13 @@
 import { Router } from 'express'
-import loginController from './controllers/loginController'
+import UserController from './controllers/userController'
 import sessionController from './controllers/sessionController'
 import authMiddleware from './middlewares/auth'
 
 const routes = Router()
 
-routes.post("/login", loginController.create)
+routes.post("/login", UserController.create)
 routes.post("/sessions", sessionController.create)
 routes.use(authMiddleware)
-routes.put("/login", loginController.update)
-routes.get("/users", loginController.view)
+routes.post("/logout", sessionController.delete)
 
 export default routes

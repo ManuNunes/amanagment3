@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import Attendance from "./attendance"
 @Entity("Users")
 export default class User {
     @PrimaryGeneratedColumn("uuid")
@@ -13,6 +13,8 @@ export default class User {
     pass: string
     @CreateDateColumn()
     created_at: Date
+    @OneToMany(() => Attendance, attendance => attendance.id)
+    attendances: Attendance[]
 
     @BeforeInsert()
     createHash() {
