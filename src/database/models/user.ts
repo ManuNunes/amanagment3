@@ -13,8 +13,6 @@ export default class User {
     pass: string
     @CreateDateColumn()
     created_at: Date
-    @OneToMany(() => Attendance, attendance => attendance.id)
-    attendances: Attendance[]
 
     @BeforeInsert()
     createHash() {

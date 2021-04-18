@@ -13,7 +13,7 @@ export class createAttendance1618636570621 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: "creator",
+                        name: "creatorId",
                         type: "varchar"
                     },
                     {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getCustomRepository, UsingJoinTableIsNotAllowedError } from 'typeorm';
+import { getCustomRepository } from 'typeorm';
 import { UsersRepository } from '../database/repository/userRepository';
 
 class UserController {
@@ -27,6 +27,45 @@ class UserController {
 
         } catch (err) {
             return res.status(401).json({ error: "Não foi possível salvar o usuário" })
+        }
+    }
+    async update(req: Request, res: Response) {
+        const { id } = req.params
+
+        const { new_email } = req.body
+
+        const userRepository = getCustomRepository(UsersRepository)
+
+        const user = await userRepository.findOne({ id })
+
+        if (!user) {
+            return res.json({ error: "Esse usuário não existe!" })
+        }
+        try {
+            await userRepository.update(id, { email: new_email })
+
+            return res.json({ message: "Usuário atualizado com sucesso!" })
+        } catch (err) {
+            return res.json({ error: "Não foi possível atualizar o usuário" + err })
+        }
+
+    }
+    async delete(req: Request, res: Response) {
+        const { id } = req.params
+
+        const userRepository = getCustomRepository(UsersRepository)
+
+        const user = await userRepository.findOne({ id })
+
+        if (!user) {
+            return res.json({ error: "Esse usuário não existe!" })
+        }
+        try {
+            await userRepository.delete(id)
+
+            return res.json({ message: "usuário foi excluído!" })
+        } catch (err) {
+            return res.json({ error: "Não foi possível excluir o usuário" + err })
         }
     }
 }

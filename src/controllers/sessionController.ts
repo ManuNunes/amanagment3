@@ -3,6 +3,7 @@ import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../database/repository/userRepository";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { getDefaultSettings } from "node:http2";
 
 
 class SessionController {
@@ -30,10 +31,6 @@ class SessionController {
                 expiresIn: '7d'
             }),
         })
-    }
-    async delete(req: Request, res: Response) {
-
-        return res.json({ message: "Você saiu!", token: null })
     }
 }
 export = new SessionController()
