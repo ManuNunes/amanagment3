@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
+import uuid from 'uuid'
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Attendance from "./attendance"
 @Entity("Users")
 export default class User {
     @PrimaryGeneratedColumn("uuid")
