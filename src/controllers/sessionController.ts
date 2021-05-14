@@ -1,3 +1,4 @@
+import 'dotenv'
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../database/repository/userRepository";
@@ -8,9 +9,10 @@ import jwt from 'jsonwebtoken'
 class SessionController {
     async create(req: Request, res: Response) {
         const { email, password } = req.body
+
         const userRepository = getCustomRepository(UsersRepository)
+
         const checkEmail = await userRepository.findOne({ email })
-        console.log(email)
 
         if (!checkEmail) {
             return res.status(401).json({ error: "Usuário não existe" })
