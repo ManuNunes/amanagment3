@@ -6,17 +6,17 @@ import './../database'
 import cors from 'cors'
 
 class App {
-    app: any
-    constructor() {
+  app: any
+  constructor() {
 
-        this.app = express()
-        this.app.use(cors())
-        this.app.use(express.json())
-        this.routes()
-    }
-    routes() {
-        this.app.use(route)
-    }
+    this.app = express()
+    this.app.use(cors())
+    this.app.use(express.json())
+    this.routes()
+  }
+  routes() {
+    this.app.use(route)
+  }
 }
 
 

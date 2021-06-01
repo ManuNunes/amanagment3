@@ -1,3 +1,4 @@
+
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../database/repository/userRepository";
@@ -10,7 +11,6 @@ class SessionController {
         const { email, password } = req.body
         const userRepository = getCustomRepository(UsersRepository)
         const checkEmail = await userRepository.findOne({ email })
-        console.log(email)
 
         if (!checkEmail) {
             return res.status(401).json({ error: "Usuário não existe" })
