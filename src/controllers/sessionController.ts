@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+import 'dotenv'
+>>>>>>> 1d582b5675941f585f6ecea74c10d0e05979a37b
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../database/repository/userRepository";
@@ -9,7 +13,9 @@ import jwt from 'jsonwebtoken'
 class SessionController {
     async create(req: Request, res: Response) {
         const { email, password } = req.body
+
         const userRepository = getCustomRepository(UsersRepository)
+
         const checkEmail = await userRepository.findOne({ email })
 
         if (!checkEmail) {
