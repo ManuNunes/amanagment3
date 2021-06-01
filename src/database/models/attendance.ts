@@ -1,9 +1,9 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-
-@Entity("Attendance")
+import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { v4 } from 'uuid'
+@Entity()
 export default class Attendance {
-  @PrimaryGeneratedColumn("uuid")
-  readonly id: string
+  @PrimaryColumn("uuid")
+  id: string
   @Column()
   creator: string
   @Column()
@@ -14,4 +14,11 @@ export default class Attendance {
   created_at: Date
   @CreateDateColumn()
   updated_at: Date
+
+  @BeforeInsert()
+  createNeeded() {
+    if (!this.id) {
+      this.id = v4()
+    }
+  }
 }

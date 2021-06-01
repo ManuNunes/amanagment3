@@ -7,7 +7,7 @@ module.exports = {
     "rejectUnauthorized": false
   },
   "entities": [
-    "./src/database/models/**.ts"
+    "./src/database/models/*.ts"
   ],
   "migrations": [
     "./src/database/migrations/*.ts"

@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
-import uuid from 'uuid'
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-@Entity("Users")
+import { v4 } from 'uuid'
+import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+@Entity()
 export default class Users {
-  @PrimaryGeneratedColumn("uuid")
-  readonly id: string
+  @PrimaryColumn("uuid")
+  id: string
   @Column()
   username: string
   @Column()
@@ -13,9 +13,14 @@ export default class Users {
   pass: string
   @CreateDateColumn()
   created_at: Date
+  @CreateDateColumn()
+  updated_at: Date
 
   @BeforeInsert()
-  createHash() {
+  createNeeded() {
+    if (!this.id) {
+      this.id = v4()
+    }
     if (this.pass) {
       this.pass = bcrypt.hashSync(this.pass, 6)
     }
