@@ -23,4 +23,4 @@ Registrar atendimentos e criar observações sobre clientes, documentar procedim
   
   ROTAS PRIVADAS
   - /attendance ( POST e GET)
-  - 
+  - /users/id ( PUT E DELETE )
